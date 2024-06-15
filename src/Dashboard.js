@@ -1,42 +1,33 @@
-import React from 'react';
-import Home from './Home';
-import AboutUs from './About';
-import Contact from './Contact';
-import { BrowserRouter, Route, Routes, NavLink, Redirect, Link,Navigate } from 'react-router-dom';
+import React, { useState } from "react";
+import Home from "./Home";
+import AboutUs from "./About";
+import Contact from "./Contact";
+import {BrowserRouter, Route, Routes, NavLink, Redirect, Link, Navigate } from 'react-router-dom';
+import './App.css';
 
 function Dashboard() {
+  
   return (
-    <BrowserRouter>
-      <div>
-        <header className="header">
-          <h1>Simple React Page</h1>
-          <nav className="navbar">
-            <ul>
-              <li>
-                <NavLink to="/home" activeClassName="select">
-                  Home
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/about" activeClassName="select">
-                  About Us
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/contact" activeClassName="select">
-                  Contact Us
-                </NavLink>
-              </li>
-            </ul>
-          </nav>
-        </header>
+    <header className="header">
+      <div className="App">
+      <BrowserRouter>
+        <nav>
+          <h1>Routing WebPage</h1>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/contact">Contact</NavLink>
+        </nav>
 
-        <Route path="/home" component={Home} />
-        <Route path="/about" component={AboutUs} />
-        <Route path="/contact" component={Contact} />
-      </div>
-    </BrowserRouter>
+        <Routes>
+          <Route path="/" element = {<Home/>} />              
+          <Route path="/about" element = {<AboutUs />} />
+          <Route path="/contact" element = {<Contact />} />  
+          <Route path="/*" element={<Navigate to="/"/> }/>       
+        </Routes>
+
+      </BrowserRouter>
+    </div>
+    </header>
   );
 }
-
 export default Dashboard;
